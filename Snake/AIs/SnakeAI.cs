@@ -1,4 +1,4 @@
-﻿using Snake.Models;
+using Snake.Models;
 using System.Windows;
 
 namespace Snake.AIs
@@ -17,36 +17,36 @@ namespace Snake.AIs
             Point Head = _model.Head;
             Point Food = new Point(_model.FoodX, _model.FoodY);
 
-            if (Head.X < Food.X && FoodOrFree((int)Head.X + 1, (int)Head.Y))
+            if (Head.X < Food.X && FoodOrFree(Head.X + 1, Head.Y))
                 return Direction.Right;
 
-            if (Head.X > Food.X && FoodOrFree((int)Head.X - 1, (int)Head.Y))
+            if (Head.X > Food.X && FoodOrFree(Head.X - 1, Head.Y))
                 return Direction.Left;
 
-            if (Head.Y > Food.Y && FoodOrFree((int)Head.X, (int)Head.Y - 1))
+            if (Head.Y > Food.Y && FoodOrFree(Head.X, Head.Y - 1))
                 return Direction.Up;
 
-            if (Head.Y < Food.Y && FoodOrFree((int)Head.X, (int)Head.Y + 1))
+            if (Head.Y < Food.Y && FoodOrFree(Head.X, Head.Y + 1))
                 return Direction.Down;
 
-            if (FoodOrFree((int)Head.X + 1, (int)Head.Y))
+            if (FoodOrFree(Head.X + 1, Head.Y))
                 return Direction.Right;
 
-            if (FoodOrFree((int)Head.X - 1, (int)Head.Y))
+            if (FoodOrFree(Head.X - 1, Head.Y))
                 return Direction.Left;
 
-            if (FoodOrFree((int)Head.X, (int)Head.Y + 1))
+            if (FoodOrFree(Head.X, Head.Y + 1))
                 return Direction.Down;
 
-            if (FoodOrFree((int)Head.X, (int)Head.Y - 1))
+            if (FoodOrFree(Head.X, Head.Y - 1))
                 return Direction.Up;
 
             return Direction.Left;
         }
 
-        private bool FoodOrFree(int x, int y)
+        private bool FoodOrFree(double x, double y)
         {
-            return _model.MapField(x, y) == FieldTypes.Food || _model.MapField(x, y) == FieldTypes.Free;
+            return _model.MapField((int)x, (int)y) == FieldTypes.Food || _model.MapField((int)x, (int)y) == FieldTypes.Free;
         }
     }
 }
